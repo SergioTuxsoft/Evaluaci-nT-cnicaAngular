@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html ng-app> <!-- Este ng-app esta indicando que este elementos de HTML contiene una aplicacion de Angular en los hijos
+					Si no le ponemos esto, aun que tenga el CDN de angular, no identificara el codigo HTML como 
+					una aplicacion Angular  -->
+<head>
+	<meta charset="utf-8">
+<title>Green Leaves</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.min.js"></script>
+<style type="text/css">
+	body {
+		font-family: sans-serif;
+		font-weight: 100;
+		background: rgb(255, 255, 255);
+	}
+
+	h1 {
+		
+		text-align: center;
+		color: rgb(255, 255, 255);
+	}
+
+	.contenedor {
+		width: 650px;
+		margin: 0 auto;
+		box-shadow: 5px 5px 5px #555;
+		background: #fff;
+		border-radius: 15px;
+		padding: 10px;
+	}
+	
+	.boton {
+		background: #080;
+		color: #fff;
+		padding: 5px 15px;
+		border-radius: 5px;
+		border: thin solid #060;
+		margin: 5px auto;
+	}
+
+	.boton:hover {
+		background: #0A0;
+	}
+
+	.ng-valid{
+		border: thin solid #090;
+	}
+
+	.ng-invalid{
+		border: thin solid #990000;
+	}
+	.titulo{
+		display : flex;
+		justify-content: flex-start;
+		background: #0A0;
+		border-radius: 15px;
+	}
+	.imgTitulo{
+		margin-left: 60px; 
+	}
+
+	.margen{
+		margin-right: 45px;
+	}
+</style>
+</head>
+<body>
+	<div class="contenedor">
+		<div class="titulo">
+
+			<div><h1>Green Leaves</h1></div><div class="imgTitulo"><img src="hoja.png" width="100" alt="Texto que se muestra al no encontrar las imagenes indicadas"></div> 
+		</div>
+	
+
+	{{"Hola" + " Mundo"}}<!-- El operador de las dobles llaves es ejecutar lo que esta dentro como JS -->
+	<div>
+	<form action="" name="formulario" id="formulario">
+	<span class="margen">Nombre:</span><input type="text" name="nombre" /><br />
+	<span class="margen">E-mail:</span><input type="text" name="email" /><br />
+	<span class="margen">Teléfono:</span><input type="number" name="telefono" /><br />
+	<span class="margen">Fecha:</span><input type="date" name="fecha" /><br />
+	<span class="margen">Ciudad y Estado:</span><input type="text" name="ciudad" /><br />
+	<input class="boton" type="submit" value="Enviar" />
+	</form>
+	</div>
+
+	<script>
+		var formulario = document.getElementById('formulario');
+			var nombre = formulario.nombre; //Como el formulario ya lo tenemos cargado, lo utilizamos para accder a los demas campos que este contiene por su "name"
+			var correo = formulario.email;
+			var telefono = formulario.telefono;
+			var fecha = formulario.fecha;
+			var ciudad = formulario.ciudad;
+
+			// Queremos saber cuando el boton es precionado o cuando el formulario es enviado
+			//Entramos al formulario y le agregamos un evento de tipo Submit(cuando el formulario haya sido enviado)
+			//Cuando el formulario haya sido enviado nos va ejecutar la funcion(validar)
+			formulario.addEventListener('submit', validar);
+
+			//Cuando el usuario envie el formulario queremos validar lo siguiente
+
+			function validar(e) {
+				//Validar el nombre
+				if (nombre.value > 18) { //Si nombre.value(es el valor) es mayor de 18
+					alert('El maximo de caracteres es de 18 para nombre');
+					//Si esta condicional se ejecuta queremos que tambien que se cancele el envio del formulario
+					//Esta funcion nos permite, prevenir que se ejecute la funcion actual, que es enviar el formulario
+
+					//e.preventDefault();
+				} else if (nombre.value == '') {
+					alert('Por favor, ingresa un nombre');
+				}
+
+				//Validamos correo
+				//
+				if (correo.value == '') {
+					alert('Por favor ingrese un correo valido');
+				}
+
+				if (correo.telefono == '') {
+					alert('Por favor ingrese telefono valido');
+				}
+
+				if (correo.fecha == '') {
+					alert('Por favor ingrese una fecha valido');
+				}
+
+				if (correo.ciudad == '') {
+					alert('Por favor ingrese una ciudad');
+				}
+
+				//Evitar que se envie el formulario
+				e.preventDefault();
+			}
+	</script>
+	
+</body>
+</html>
